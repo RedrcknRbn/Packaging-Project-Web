@@ -591,7 +591,7 @@ const InternalConfig = function (initConfig) { // eslint-disable-line no-unused-
 				} else if (path.endsWith('.side.wasm')) {
 					return `${loadPath}.side.wasm`;
 				} else if (path.endsWith('.wasm')) {
-					return `./assets/index.wasm.br`;
+					return `./assets/index.wasm`;
 				}
 				return path;
 			},
@@ -696,7 +696,7 @@ const Engine = (function () {
 	Engine.load = function (basePath, size) {
 		if (loadPromise == null) {
 			loadPath = basePath;
-			loadPromise = preloader.loadPromise(`./assets/index.wasm.br`, size, true);
+			loadPromise = preloader.loadPromise(`./assets/index.wasm`, size, true);
 			requestAnimationFrame(preloader.animateProgress);
 		}
 		return loadPromise;
@@ -736,7 +736,7 @@ const Engine = (function () {
 						initPromise = Promise.reject(new Error('A base path must be provided when calling `init` and the engine is not loaded.'));
 						return initPromise;
 					}
-					Engine.load(basePath, this.config.fileSizes[`./assets/index.wasm.br`]);
+					Engine.load(basePath, this.config.fileSizes[`./assets/index.wasm`]);
 				}
 				const me = this;
 				function doInit(promise) {
